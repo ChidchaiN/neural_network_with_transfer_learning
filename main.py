@@ -100,10 +100,10 @@ def train_network(network, train_data, l_rate, n_epoch, n_outputs, freeze_layers
             sum_error += sum([(expected[i] - outputs[i]) ** 2 for i in range(len(expected))])
             backward_propagate_error(network, expected)
             update_weights(network, row, l_rate, freeze_layers)
-        if epoch % 1000 == 0:  # Print error every 1000 epochs
+        if epoch % 1 == 0:  # Print error every 1000 epochs
             print(f"Epoch={epoch}, Learning Rate={l_rate}, Error={sum_error:.3f}")
 
-def predict(network, row):
+def predict(network, row): 
     outputs = forward_propagate(network, row)
     return outputs.index(max(outputs))
 
@@ -407,6 +407,7 @@ def main():
             test_model()
         elif choice == '11':
             save_neuron(network)
+            print("Model saved successfully.")
         elif choice == '12':
             load_neuron()
         elif choice == '13':
